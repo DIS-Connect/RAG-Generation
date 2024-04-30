@@ -65,5 +65,8 @@ class ChatBot:
                 | StrOutputParser()
             )
             rag_chain.invoke(question)"""
-            answer = retriever.invoke(question)[0].page_content
-            return answer
+            answer = retriever.invoke(question)
+            if answer.__len__() == 0:
+                return "Sorry, I can't answer this question."
+            else:
+                return answer
